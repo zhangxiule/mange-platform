@@ -1,4 +1,4 @@
-# vue-demo
+# manage-platform
 
 > A Vue.js project
 
