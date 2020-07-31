@@ -9,6 +9,7 @@ import 'element-ui/lib/theme-chalk/index.css'  //默认主题
 // import 'element-ui/lib/theme-green/index.css'  //浅绿色主题
 // import SIdentify from './components/Identify'
 import 'babel-polyfill'
+import '../static/iconfont/iconfont.css'
 
 // Vue.config.productionTip = false
 // Vue.component("SIdentify",SIdentify);
@@ -25,11 +26,3 @@ new Vue({
 }).$mount('#app');
 
 
-
-/* eslint-disable no-new */
-// new Vue({
-//   el: '#app',
-//   router,
-//   components: { App },
-//   template: '<App/>'
-// })

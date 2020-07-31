@@ -5,7 +5,7 @@
             <el-form :model="param" :rules="rules" ref="login" label-width="0px" class="ms-content">
                 <el-form-item prop="username">
                     <el-input v-model="param.username" placeholder="username">
-                        <el-button slot="prepend" icon="el-icon-lx-people"></el-button>
+                        <el-button slot="prepend" class="iconfont icon-icon-user"></el-button>
                     </el-input>
                 </el-form-item>
                 <el-form-item prop="password">
@@ -15,11 +15,11 @@
                         v-model="param.password"
                         @keyup.enter.native="submitForm()"
                     >
-                        <el-button slot="prepend" icon="el-icon-view"></el-button>
+                        <el-button slot="prepend" class="iconfont icon-mima"></el-button>
                     </el-input>
                 </el-form-item>
                 <div class="login-btn">
-                    <el-button type="primary" @click="submitForm()">登录</el-button>
+                    <el-button type="primary" @click="submitForm(param)">登录</el-button>
                 </div>
                 <p class="login-tips">Tips : 用户名和密码随便填。</p>
             </el-form>
@@ -31,6 +31,7 @@
 export default {
     data: function() {
         return {
+            flag: 1,
             param: {
                 username: 'admin',
                 password: '123123',
@@ -42,18 +43,29 @@ export default {
         };
     },
     methods: {
-        submitForm() {
+        submitForm(formName) {
             this.$refs.login.validate(valid => {
                 if (valid) {
-                    this.$message.success('登录成功');
-                    localStorage.setItem('ms_username', this.param.username);
-                    this.$router.push('/');
+                    console.log('111')
+                    console.log(formName)
+                    this.$http.get("/api/login").then(Response => {
+                        console.log(Response)
+                    })
                 } else {
-                    this.$message.error('请输入账号和密码');
-                    console.log('error submit!!');
-                    return false;
+                    console.log('2222')
                 }
-            });
+            })
+            // this.$refs.login.validate(valid => {
+            //     if (valid) {
+            //         this.$message.success('登录成功');
+            //         localStorage.setItem('ms_username', this.param.username);
+            //         this.$router.push('/');
+            //     } else {
+            //         this.$message.error('请输入账号和密码');
+            //         console.log('error submit!!');
+            //         return false;
+            //     }
+            // });
         },
     },
 };
@@ -61,11 +73,11 @@ export default {
 
 <style scoped>
 .login-wrap {
-    position: relative;
     width: 100%;
     height: 100%;
-    background-image: url(../../assets/img/login-bg.jpg);
-    background-size: 100%;
+    background-image: url(../../../static/img/login-bg.jpg);
+    background-size: 100% 100%;
+     position: fixed;
 }
 .ms-title {
     width: 100%;
@@ -99,7 +111,7 @@ export default {
 .login-tips {
     font-size: 12px;
     line-height: 30px;
-    color: #fff;
+    color: #000;
 }
 .icon {
     width: 1em;
